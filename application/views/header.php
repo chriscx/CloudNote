@@ -3,7 +3,12 @@
     <head>
 	   <meta charset="utf-8">
 	   <title>CloudNote</title>
-        <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/style.css" rel="stylesheet" type="text/css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="../../assets/bootstrap/js/bootstrap.js"></script>
     </head>
     <body>
         <div class="navbar navbar-inverse">
@@ -17,3 +22,4 @@
                 </ul>
             </div>
         </div>
+            
