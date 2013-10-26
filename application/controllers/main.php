@@ -23,7 +23,10 @@ class main extends CI_Controller {
 		$this->load->view('main');
 	}
     
-    public function create() {
+    public function create($name) {
         
+        $sql = "CALL create_note('$email', '$password', '$firstname', '$lastname')";
+        $result = $this->db->query($sql);
+        $this->load->view('main');
     }
 }

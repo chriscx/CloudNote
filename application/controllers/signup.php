@@ -28,7 +28,7 @@ class signup extends CI_Controller {
     public function val()
     {
         $user = new user();
-        $data['a'] = $user->create($_POST['email'], $_POST['password'], $_POST['firstname'], $_POST['lastname']);
+        $data['userIsCreated'] = $user->create($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
         $this->load->view('signup', $data);
     }
 }

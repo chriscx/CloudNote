@@ -15,6 +15,28 @@
     <button type="submit" class="btn">Submit</button>
   </fieldset>
 </form>
-    <?php echo $a; ?>
 </div>
+<?php
+    if(isset($userIsCreated)) {
+        if($userIsCreated == 1) {
+            ?>
+                <div class="container">
+                    <div class="alert alert-success">
+                        Account has been created :)
+                    </div>
+                </div>
+            <?php
+        }
+        else {
+            
+             ?>
+                <div class="container">
+                    <div class="alert alert-error">
+                        Something went wrong... try again!
+                    </div>
+                </div>
+            <?php
+        }
+    }
+?>
 <?php include "footer.php"?>
