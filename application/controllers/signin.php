@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+require_once "user.php";
+
 class signin extends CI_Controller {
 
 	/**
@@ -22,4 +24,11 @@ class signin extends CI_Controller {
         
 		$this->load->view('signin');
 	}
+    
+    public function check()
+    {
+        $user = new user();
+        $data['result'] = $user->signIn($_POST['password'], $_POST['email']);
+        $this->load->view("signin", $data);
+    }
 }
