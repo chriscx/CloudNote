@@ -1,7 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require_once "user.php";
-
 class signup extends CI_Controller {
 
 	/**
@@ -27,8 +25,11 @@ class signup extends CI_Controller {
     
     public function val()
     {
-        $user = new user();
+        $user = new $this->user->user();
         $data['userIsCreated'] = $user->create($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
-        $this->load->view('signup', $data);
+        if($data['userIsCreated'])
+        	$this->load->view('signin', $data);
+        else
+        	$this->load->view('signup', $data);
     }
 }

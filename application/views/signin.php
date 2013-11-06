@@ -1,5 +1,6 @@
 <?php include "header.php"?>
     <div class="container">
+
         <form class="form-horizontal" action="check" method="post">
             <div class="control-group">
                 <label class="control-label" for="inputEmail">Email</label>
@@ -23,8 +24,16 @@
     </div>
 
     <?php 
-        if(isset($result)) {
-            echo $result;
+        if(isset($isSignedIn)) {
+            if($isSignedIn) {
+        ?>
+            <div class="container">
+                <div class="alert alert-error">
+                    Something went wrong... try again!
+                </div>
+            </div>
+        <?php
+            }
         }
     ?>
 

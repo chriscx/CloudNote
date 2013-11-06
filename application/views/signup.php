@@ -18,7 +18,7 @@
 </div>
 <?php
     if(isset($userIsCreated)) {
-        if($userIsCreated == 1) {
+        if($userIsCreated) {
             ?>
                 <div class="container">
                     <div class="alert alert-success">
