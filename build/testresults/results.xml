@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<run>
+  <group size="2">
+    <name>TestSuite</name>
+    <group size="1">
+      <name>/Applications/XAMPP/xamppfiles/htdocs/CloudNote/tests/models/test_user_model.php</name>
+      <case>
+        <name>User Model</name>
+        <test>
+          <name>test_class_exists</name>
+          <pass>Expected true, got [Boolean: true] at [/Applications/XAMPP/xamppfiles/htdocs/CloudNote/tests/models/test_user_model.php line 24]</pass>
+        </test>
+        <test>
+          <name>test_create_user</name>
+          <pass>Expected true, got [Boolean: true] at [/Applications/XAMPP/xamppfiles/htdocs/CloudNote/tests/models/test_user_model.php line 32]</pass>
+        </test>
+      </case>
+    </group>
+    <group size="1">
+      <name>/Applications/XAMPP/xamppfiles/htdocs/CloudNote/tests/bugs/test_123_bug.php</name>
+      <case>
+        <name>Bug 123 Fix</name>
+        <test>
+          <name>test_issue3</name>
+          <pass>Equal expectation [Integer: 11] at [/Applications/XAMPP/xamppfiles/htdocs/CloudNote/tests/bugs/test_123_bug.php line 23]</pass>
+        </test>
+        <test>
+          <name>test_issue2</name>
+          <pass>Equal expectation [Integer: 12] at [/Applications/XAMPP/xamppfiles/htdocs/CloudNote/tests/bugs/test_123_bug.php line 28]</pass>
+        </test>
+        <test>
+          <name>test_issue1</name>
+          <pass>1 equals 1 at [/Applications/XAMPP/xamppfiles/htdocs/CloudNote/tests/bugs/test_123_bug.php line 33]</pass>
+        </test>
+      </case>
+    </group>
+  </group>
+</run>
