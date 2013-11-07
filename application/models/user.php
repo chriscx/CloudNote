@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+
+// if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 require_once "note.php";
 
@@ -37,8 +39,7 @@ class user extends CI_Model {
         if($valid) {
             $newdata = array(
                 'email'     => $email,
-                'logged_in' => TRUE,
-                'user_obj'  => $this
+                'logged_in' => TRUE
             );
 
             $this->session->set_userdata($newdata);
@@ -63,12 +64,8 @@ class user extends CI_Model {
     }
     
     public function signOut(){
-                $newdata = array(
-                    'email'     => $email,
-                    'logged_in' => FALSE
-               );
-
-        $this->session->set_userdata($newdata);
+        $this->session->unset_userdata('user_obj');
+        $this->session->set_userdata('logged_in', FALSE);
     }
     
     public function updateListOfNotes(){

@@ -19,8 +19,15 @@ class signin extends CI_Controller {
 	 */
 	public function index()
 	{
-        
-		$this->load->view('signin');
+        $user_data = $this->session->all_userdata();
+        if(isset($user_data['logged_in']) AND $user_data['logged_in']) {
+	        $data['isAlreadySignedIn'] = $user_data['logged_in'];
+	    }
+	    else{
+	    	$data['isAlreadySignedIn'] = FALSE;
+	    }
+		$this->load->view('signin', $data);
+		unset($data);
 	}
     
     public function check()
@@ -28,10 +35,12 @@ class signin extends CI_Controller {
         $user = new $this->user->user();
         $data['isSignedIn'] = $user->signIn($_POST['password'], $_POST['email']);
         if($data['isSignedIn']) {
+        	$this->session->set_userdata('user_obj', $user);
         	$this->load->view("main", $data);
        	}
        	else {
        		$this->load->view("signin", $data);
        	}
+       	unset($data);
     }
 }

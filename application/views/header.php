@@ -15,10 +15,17 @@
             <div class="navbar-inner">
                 <a class="brand" href="#">CloudNote</a>
                     <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Notes</a></li>
-                        <li><a href="#">Reminders</a></li>
-                        <li><a href="#" class="">Sign in</a></li>
+                        <?php 
+                            $isSignedIn = $this->session->userdata('logged_in');
+                            if($isSignedIn){
+                                ?>
+                                <li class="active"><a href="#">Home</a></li>
+                                <li><a href="#">Notes</a></li>
+                                <li><a href="#">Reminders</a></li>
+                                <li><a href="" class="">Sign Out</a></li>
+                            <?php
+                            }
+                        ?>
                 </ul>
             </div>
         </div>

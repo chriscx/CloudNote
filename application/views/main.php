@@ -22,10 +22,12 @@
                     <div class="row">
                         <div class="">
                             <ul class="nav nav-tabs nav-stacked">
-                                <li class="disabled"><a href="#">File 1</a></li>
-                                <li class=""><a href="#">File 2</a></li>
-                                <li class=""><a href="#">File 3</a></li>
-                                <li class=""><a href="#">File 4</a></li>
+                                <?php
+                                    // foreach($note in $listOfNotes) {
+                                    //     //echo "<li class='disabled'><a href='#' id_note='$note['id_note']'>$note['name']</a></li>"
+                                    //     echo "<li class=''><a href='#' id_note='$note['id_note']'>$note['name']</a></li>"
+                                    // }
+                                ?>
                             </ul>
                         </div>
                     </div>

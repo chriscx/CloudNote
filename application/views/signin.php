@@ -24,15 +24,32 @@
     </div>
 
     <?php 
+    echo realpath('../CloudNote/');
+        if(isset($isAlreadySignedIn)) {
+            echo $isAlreadySignedIn;
+            if($isAlreadySignedIn) {
+    ?>
+            <div class="container">
+                <div class="alert">
+                    You are already signed in!
+                </div>
+            </div>
+    <?php
+            }
+        }
+    ?>
+
+    <?php 
         if(isset($isSignedIn)) {
+            echo $isSignedIn;
             if($isSignedIn) {
-        ?>
+    ?>
             <div class="container">
                 <div class="alert alert-error">
                     Something went wrong... try again!
                 </div>
             </div>
-        <?php
+    <?php
             }
         }
     ?>
