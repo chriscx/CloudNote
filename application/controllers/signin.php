@@ -20,27 +20,26 @@ class signin extends CI_Controller {
 	public function index()
 	{
         $user_data = $this->session->all_userdata();
-        if(isset($user_data['logged_in']) AND $user_data['logged_in']) {
-	        $data['isAlreadySignedIn'] = $user_data['logged_in'];
-	    }
-	    else{
-	    	$data['isAlreadySignedIn'] = FALSE;
-	    }
-		$this->load->view('signin', $data);
-		unset($data);
+
+        if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+
+        	$this->load->view("already_signed_in", $data);
+        }
+        else
+			$this->load->view('sign_in');
 	}
     
     public function check()
     {
-        $user = new $this->user->user();
-        $data['isSignedIn'] = $user->signIn($_POST['password'], $_POST['email']);
-        if($data['isSignedIn']) {
-        	$this->session->set_userdata('user_obj', $user);
-        	$this->load->view("main", $data);
+        $user = new $this->user;
+        $data['verif_sign_in'] = $user->signIn($_POST['password'], $_POST['email']);
+        if($data['verif_sign_in']) {
+
+			// redirect to main address
+			header("Location: " . site_url("index.php/main/index/"));
        	}
        	else {
-       		$this->load->view("signin", $data);
+       		$this->load->view("error_sign_in");
        	}
-       	unset($data);
     }
 }

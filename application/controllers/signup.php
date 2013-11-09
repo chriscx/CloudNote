@@ -20,16 +20,16 @@ class signup extends CI_Controller {
 	public function index()
 	{
         
-		$this->load->view('signup');
+		$this->load->view('sign_up');
 	}
     
     public function val()
     {
         $user = new $this->user->user();
-        $data['userIsCreated'] = $user->create($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
-        if($data['userIsCreated'])
-        	$this->load->view('signin', $data);
+        $data['user_is_created'] = $user->create($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
+        if($data['user_is_created'])
+        	//redirect to sign in page
         else
-        	$this->load->view('signup', $data);
+        	$this->load->view('success_sign_up', $data);
     }
 }

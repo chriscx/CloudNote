@@ -19,12 +19,99 @@ class main extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('main');
+		$user_data = $this->session->all_userdata();
+
+		if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+
+			if(isset($user_data['id_user'])) {
+				$user = new $this->user;
+				$user->setId($user_data['id_user']);
+				$user->updateListOfNotes();
+				$tab = $user->getListOfNotes();
+				$data['listOfNotes'] = $tab;
+				$this->load->view('main', $data);
+			}
+			else {
+				$data['error_nb'] = 1;
+				$this->load->view('error', $data);
+			}
+		}
+		else
+			$this->load->view('not_signed_in', $data);
 	}
     
-    public function create($name) {
-        $sql = "CALL create_note('$email', '$password', '$firstname', '$lastname')";
-        $result = $this->db->query($sql);
-        $this->load->view('main');
+    public function create() {
+		$user_data = $this->session->all_userdata();
+
+		if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+
+			if(isset($user_data['id_user'])) {
+				$name = $_POST['name_note'];
+				$id = $user_data['id_user'];
+				$sql = "CALL create_note('$id', '$name')";
+		        $query = $this->db->query($sql);
+
+		        $user = new $this->user;
+				$user->setId($user_data['id_user']);
+				$user->updateListOfNotes();
+				$tab = $user->getListOfNotes();
+			}
+			else {
+				echo 2;
+			}
+		}
+		else
+			echo 1;
+    }
+
+    public function LoadNote($name) {
+		$user_data = $this->session->all_userdata();
+
+		if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+
+			if(isset($user_data['id_user'])) {
+				
+			}
+			else {
+				$data['error_nb'] = 1;
+				$this->load->view('error', $data);
+			}
+		}
+		else
+			$this->load->view('not_signed_in', $data);
+    }
+
+    public function SyncNote($name) {
+		$user_data = $this->session->all_userdata();
+
+		if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+
+			if(isset($user_data['id_user'])) {
+				
+			}
+			else {
+				$data['error_nb'] = 1;
+				$this->load->view('error', $data);
+			}
+		}
+		else
+			$this->load->view('not_signed_in', $data);
+    }
+
+    public function DeleteNote($name) {
+		$user_data = $this->session->all_userdata();
+
+		if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+
+			if(isset($user_data['id_user'])) {
+				
+			}
+			else {
+				$data['error_nb'] = 1;
+				$this->load->view('error', $data);
+			}
+		}
+		else
+			$this->load->view('not_signed_in', $data);
     }
 }

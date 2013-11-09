@@ -9,6 +9,7 @@
         <link href="../../assets/style.css" rel="stylesheet" type="text/css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="../../assets/bootstrap/js/bootstrap.js"></script>
+        <script src="../../assets/js/Note.js"></script>
     </head>
     <body>
         <div class="navbar navbar-inverse">

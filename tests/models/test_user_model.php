@@ -11,12 +11,15 @@ class test_users_model extends CodeIgniterUnitTestCase
 
 	public function setUp()
 	{
-
+		// $password = "test";
+		// $_password = $this->encrypt->sha1($password);
+		$this->db->query("INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
+('55d87904788420880ddd75b01a8296bd', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36', 1383947669, '');");
     }
 
     public function tearDown()
 	{
-
+		$this->db->query("DELETE FROM ci_sessions WHERE session_id = '55d87904788420880ddd75b01a8296bd'");
     }
 
 	public function test_class_exists()
@@ -33,6 +36,45 @@ class test_users_model extends CodeIgniterUnitTestCase
 		if($query->num_rows() > 0) {
 			$query = $this->db->query("DELETE FROM cn_users WHERE email = 'test@test.org'");
 		}
+	}
+
+	public function test_signin_user()
+	{
+		$user = new $this->user;
+		$user->create('test_firstname', 'test_lastname', 'test@test.org', 'test');
+		$query = $this->db->query("SELECT u.* FROM cn_users u WHERE u.email = 'test@test.org'");
+		$user_data = new $this->session;
+		$valid = $user->signIn('test', 'test@test.org');
+		$this->ignoreException();
+		$this->assertTrue($valid === TRUE);
+		// if($query->num_rows() > 0) {
+		// 	$query = $this->db->query("DELETE FROM cn_users WHERE email = 'test@test.org'");
+		// }
+	}
+
+	// public function test_issignedin_user()
+	// {
+	// 	$user = new $this->user;
+	// 	$user->create('test_firstname', 'test_lastname', 'test@test.org', 'test');
+	// 	$query = $this->db->query("SELECT u.* FROM cn_users u WHERE u.email = 'test@test.org'");
+	// 	$this->assertTrue($query->num_rows() === 1);
+	// 	$user->signIn('test', 'test@test.org');
+	// 	// if($query->num_rows() > 0) {
+	// 	// 	$query = $this->db->query("DELETE FROM cn_users WHERE email = 'test@test.org'");
+	// 	// }
+	// }
+
+	public function test_signout_user()
+	{
+
+	}
+
+	public function test_getlistofnotes_user()
+	{
+		// $user = new $this->user;
+		// $user->signIn("test", "test");
+		// $user->updateListOfNotes();
+		// $user->getListOfNotes();
 	}
 
 	// public function test_add_user()

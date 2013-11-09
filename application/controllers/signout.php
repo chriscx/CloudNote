@@ -20,8 +20,8 @@ class signout extends CI_Controller {
 	public function index()
 	{
         $user_data = $this->session->all_userdata();
-        if(isset($user_data['user_obj'])) {
-        	$user = $user_data['user_obj'];
+        if(isset($user_data['id_user'])) {
+        	$user = new $this->user;
         	$user->signOut();
 	    }
 	    else {

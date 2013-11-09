@@ -6,7 +6,7 @@ require_once "note.php";
 
 class user extends CI_Model {
 
-    private $id;
+    public $id;
     private $firstname;
     private $lastname;
     private $email;
@@ -15,6 +15,10 @@ class user extends CI_Model {
     
     public function __construct() {
         parent::__construct();
+    }
+
+    public function setId($_id) {
+        $this->id = $_id;
     }
     
     public function create($firstname, $lastname, $email, $password) {
@@ -37,12 +41,6 @@ class user extends CI_Model {
         }
 
         if($valid) {
-            $newdata = array(
-                'email'     => $email,
-                'logged_in' => TRUE
-            );
-
-            $this->session->set_userdata($newdata);
 
             $sql = "SELECT u.id_user AS id_user FROM cn_users u WHERE u.email = '$email'";
             $query = $this->db->query($sql);
@@ -52,6 +50,14 @@ class user extends CI_Model {
                     $this->id = $row->id_user;
                 }
             }
+
+            $newdata = array(
+                'email'     => $email,
+                'signed_in' => TRUE,
+                'id_user'   => $this->id
+            );
+
+            $this->session->set_userdata($newdata);
         }
         return $valid;    
     }
@@ -60,25 +66,25 @@ class user extends CI_Model {
         returns TRUE or FALSE
     */
     public function isSignedIn(){
-        return $this->session->userdata('logged_in');
+        return $this->session->userdata('signed_in');
     }
     
     public function signOut(){
-        $this->session->unset_userdata('user_obj');
-        $this->session->set_userdata('logged_in', FALSE);
+        $this->session->set_userdata('signed_in', FALSE);
     }
     
     public function updateListOfNotes(){
         
         if($this->isSignedIn()){
                //get list of Id, name of notes
-            $sql = "CALL get_list_notes($id)";
+            $sql = "CALL get_list_notes($this->id)";
             $query = $this->db->query($sql);
             if ($query->num_rows() > 0) {
                 $i = 0;
                 foreach ($query->result() as $row) {
                     $this->listOfNotes[$i]['id_note'] = $row->id_note;
                     $this->listOfNotes[$i]['name'] = $row->name;
+                    $i++;
 
                 }
             }
@@ -86,6 +92,14 @@ class user extends CI_Model {
     }
 
     public function getListOfNotes(){
-        return $this->getListOfNotes;
+        return $this->listOfNotes;
+    }
+
+    public function getId() {
+        if(isset($this->id)) {
+            return $this->id;
+        }
+        else
+            return -1;
     }
 }
