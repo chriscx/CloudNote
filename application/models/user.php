@@ -88,6 +88,7 @@ class user extends CI_Model {
 
                 }
             }
+            $query->next_result();
         }
     }
 

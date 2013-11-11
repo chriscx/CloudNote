@@ -23,7 +23,7 @@ class signin extends CI_Controller {
 
         if(isset($user_data['signed_in']) && $user_data['signed_in']) {
 
-        	$this->load->view("already_signed_in", $data);
+        	header("Location: " . site_url("index.php/main/index/"));
         }
         else
 			$this->load->view('sign_in');

@@ -19,7 +19,13 @@ class signup extends CI_Controller {
 	 */
 	public function index()
 	{
-        
+        $user_data = $this->session->all_userdata();
+
+        if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+
+        	header("Location: " . site_url("index.php/main/index/"));
+        }
+        else
 		$this->load->view('sign_up');
 	}
     
@@ -29,6 +35,7 @@ class signup extends CI_Controller {
         $data['user_is_created'] = $user->create($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
         if($data['user_is_created'])
         	//redirect to sign in page
+        	header("Location: " . site_url("index.php/signin/index/"));
         else
         	$this->load->view('success_sign_up', $data);
     }

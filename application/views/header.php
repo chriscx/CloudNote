@@ -10,6 +10,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="../../assets/bootstrap/js/bootstrap.js"></script>
         <script src="../../assets/js/Note.js"></script>
+        <script src="../../assets/cookie_jquery/jquery.cookie.js"></script>
     </head>
     <body>
         <div class="navbar navbar-inverse">

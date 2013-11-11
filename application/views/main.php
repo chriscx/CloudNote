@@ -1,4 +1,7 @@
 <?php include "header.php";?>
+ <script> 
+    window.setInterval("syncNote()",5000); 
+ </script>
     <div style="width: 90%; padding-left: 5%;" class="row-fluid">
         <div class="span12">
             <div class="span3">
@@ -21,11 +24,14 @@
                     <br />
                     <div class="row">
                         <div class="">
-                            <ul class="nav nav-tabs nav-stacked">
+                            <ul class="nav nav-tabs nav-stacked" id="list_notes">
                                 <?php
                                     for($i = 0; $i < count($listOfNotes); $i++) {
-                                        //echo "<li class='disabled'><a href='#' id_note='$note['id_note']'>$note['name']</a></li>"
-                                        echo "<li class=''><a href='#' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . "</a></li>";
+                                        if($i === 0) {
+                                            echo "<li class='disabled'><a onclick='loadNote(this)' selected='true' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span class='btn btn-mini' style='float:right'><i class='icon-remove'></i></span></a></li>";
+                                        }
+                                        else
+                                            echo "<li class=''><a onclick='loadNote(this)' selected='false' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span class='btn btn-mini' style='float:right'><i class='icon-remove'></i></span></a></li>";
                                     }
                                 ?>
                             </ul>
@@ -34,9 +40,12 @@
                 </div>
                 <div class="span9">
                     <div style="height: 90%;">
-                        <textarea style="width: 100%; height: 100%;" rows="25" spellcheck="true" id="note_content"></textarea>
+                        <textarea style="width: 100%; height: 100%;" rows="25" spellcheck="true" id="note_content" <?php echo "id_note='". $listOfNotes[0]['id_note']. "'"?>><?php echo $content_note_displayed; ?></textarea>
                     </div>
                 </div>
             </div>
         </div>
+ <script> 
+    $(window).bind('beforeunload', syncNoteBeforeUnload());
+ </script>
 <?php include "footer.php"?>
