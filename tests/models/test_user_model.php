@@ -11,15 +11,12 @@ class test_users_model extends CodeIgniterUnitTestCase
 
 	public function setUp()
 	{
-		// $password = "test";
-		// $_password = $this->encrypt->sha1($password);
-		$this->db->query("INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('55d87904788420880ddd75b01a8296bd', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36', 1383947669, '');");
+
     }
 
     public function tearDown()
 	{
-		$this->db->query("DELETE FROM ci_sessions WHERE session_id = '55d87904788420880ddd75b01a8296bd'");
+		
     }
 
 	public function test_class_exists()
