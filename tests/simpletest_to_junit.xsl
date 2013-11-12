@@ -37,11 +37,11 @@
     </failure>
   </xsl:template>
 
-  <xsl:template match="exception">
+  <!-- <xsl:template match="exception"> -->
     <!-- assuming same format as fail -->
-    <error><xsl:attribute name="message"><xsl:value-of select="."/></xsl:attribute>
+    <!-- <error><xsl:attribute name="message"><xsl:value-of select="."/></xsl:attribute> -->
     <!-- content is for stacktrace; not available / broken out by simpletest -->
-    </error>
-  </xsl:template>
+    <!-- </error> -->
+  <!-- </xsl:template> -->
 
 </xsl:stylesheet>
