@@ -13,7 +13,7 @@
         <script src="../../assets/cookie_jquery/jquery.cookie.js"></script>
     </head>
     <body>
-        <div class="navbar navbar-inverse">
+        <div class="navbar navbar-inverse" id="nav_bar">
             <div class="navbar-inner">
                 <a class="brand" href="#">CloudNote</a>
                     <ul class="nav">
