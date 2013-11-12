@@ -50,7 +50,7 @@ class main extends CI_Controller {
 			}
 		}
 		else
-			$this->load->view('not_signed_in', $data);
+			header("Location: " . site_url("index.php/signin/index/"));
 	}
     
     public function create() {
@@ -135,20 +135,25 @@ class main extends CI_Controller {
 			$this->load->view('not_signed_in', $data);
     }
 
-  //   public function delete($name) {
-		// $user_data = $this->session->all_userdata();
+    public function delete() {
+		$user_data = $this->session->all_userdata();
 
-		// if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+		if(isset($user_data['signed_in']) && $user_data['signed_in']) {
 
-		// 	if(isset($user_data['id_user'])) {
-				
-		// 	}
-		// 	else {
-		// 		$data['error_nb'] = 1;
-		// 		$this->load->view('error', $data);
-		// 	}
-		// }
-		// else
-		// 	$this->load->view('not_signed_in', $data);
-  //   }
+			if(isset($user_data['id_user'])) {
+				$id_user = $user_data['id_user'];
+				$id_note = $_POST['id_note'];
+				$sql = "CALL delete_note($id_note, $id_user)";
+				echo "$sql ";
+		        $query = $this->db->query($sql);
+		        echo 'SUCCESS';
+			}
+			else {
+				$data['error_nb'] = 1;
+				$this->load->view('error', $data);
+			}
+		}
+		else
+			$this->load->view('not_signed_in', $data);
+    }
 }

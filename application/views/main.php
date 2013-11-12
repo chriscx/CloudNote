@@ -28,10 +28,10 @@
                                 <?php
                                     for($i = 0; $i < count($listOfNotes); $i++) {
                                         if($i === 0) {
-                                            echo "<li class='disabled'><a onclick='loadNote(this)' selected='true' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span class='btn btn-mini' style='float:right'><i class='icon-remove'></i></span></a></li>";
+                                            echo "<li class='disabled'><a onclick='loadNote(this)' selected='true' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span onclick='deleteNote(this)' class='btn btn-mini' style='float:right'><i class='icon-remove'></i></span></a></li>";
                                         }
                                         else
-                                            echo "<li class=''><a onclick='loadNote(this)' selected='false' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span class='btn btn-mini' style='float:right'><i class='icon-remove'></i></span></a></li>";
+                                            echo "<li class=''><a onclick='loadNote(this)' selected='false' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span onclick='deleteNote(this)' class='btn btn-mini' style='float:right'><i class='icon-remove'></i></span></a></li>";
                                     }
                                 ?>
                             </ul>

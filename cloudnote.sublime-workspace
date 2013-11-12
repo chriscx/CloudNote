@@ -3,10 +3,78 @@
 	{
 		"selected_items":
 		[
+			[
+				"listOfNo",
+				"getListOfNotes"
+			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "application/controllers/signin.php",
+			"settings":
+			{
+				"buffer_size": 1267,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/controllers/signout.php",
+			"settings":
+			{
+				"buffer_size": 866,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/models/user.php",
+			"settings":
+			{
+				"buffer_size": 2732,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "assets/js/Note.js",
+			"settings":
+			{
+				"buffer_size": 3331,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/controllers/main.php",
+			"settings":
+			{
+				"buffer_size": 4365,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/main.php",
+			"settings":
+			{
+				"buffer_size": 2994,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/controllers/signup.php",
+			"settings":
+			{
+				"buffer_size": 1314,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/header.php",
+			"settings":
+			{
+				"buffer_size": 1586,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -35,6 +103,42 @@
 	},
 	"file_history":
 	[
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/assets/js/cookie.jquery.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/controllers/ajax.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/config/autoload.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/libraries/MY_Session.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/tests/models/test_user_model.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/assets/js/Note.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/controllers/main.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/controllers/signin.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/controllers/signout.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/models/user.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/controllers/test.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/views/main.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/libraries/MY_session.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/views/header.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/config/testing/database.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/build.xml",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/unit_test.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/views/sign_in.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/controllers/signup.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/config/database.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/system/core/Utf8.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/libraries/userTest.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/tests/models/demo.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/tests/userTest.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/tests/phpunit.xml",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/tests/bootstrap.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/views/signup.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/models/note.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/views/signin.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/models/reminder.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/controllers/userTest.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/unit-testing/signinTest.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/controllers/unit-testing/userTest.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/unit-testing/userTest.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/controllers/note.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/CloudNote/application/controllers/user.php",
 		"/Applications/XAMPP/xamppfiles/htdocs/MyBlog/application/config/database.php",
 		"/Applications/XAMPP/xamppfiles/htdocs/MyBlog/application/config/autoload.php",
 		"/Applications/XAMPP/xamppfiles/htdocs/MyBlog/.htaccess"
@@ -45,9 +149,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -55,6 +160,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"protected",
+			"flashdata_mark",
+			"MY_session",
+			"session",
+			"user_obj",
+			"usr_obj"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -62,6 +173,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"public",
+			"session",
+			"MY_Session",
+			"MY_session"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -72,8 +187,235 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "application/controllers/signin.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1267,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								648,
+								856
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/controllers/signout.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 866,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/models/user.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2732,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2490,
+								2490
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 778.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "assets/js/Note.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3331,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3319,
+								3319
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "application/controllers/main.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4365,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3849,
+								3849
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1559.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "application/views/main.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2994,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2219,
+								2219
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 1157.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "application/controllers/signup.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1314,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								843,
+								843
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "application/views/header.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1586,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								734,
+								734
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -83,7 +425,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -111,7 +453,7 @@
 	"project": "cloudnote.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":

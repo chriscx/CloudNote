@@ -11,13 +11,24 @@ function createNote() {
     	$('#newFile').modal('hide');
         if(!json.error) {
             //"<li class=''><a href='#' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . "</a></li>"
+            var disabled = document.getElementsByClassName('disabled');
+            disabled[0].className = '';
             var li = document.createElement('li');
             li.setAttribute('class', 'disabled');
             var a = document.createElement('a');
             a.setAttribute('href', '#');
             a.setAttribute('id_note', json.id_note);
             a.setAttribute('selected', 'true');
+            a.setAttribute('onclick', 'loadNote(this)');
+            var span = document.createElement('span');
+            span.setAttribute('onclick', 'deleteNote(this)');
+            span.setAttribute('class', 'btn btn-mini');
+            span.setAttribute('style', 'float:right');
+            var i = document.createElement('i');
+            i.setAttribute('class', 'icon-remove');
+            span.appendChild(i);
             a.appendChild(document.createTextNode(json.name_note));
+            a.appendChild(span);
             li.appendChild(a);
             document.getElementById("list_notes").insertBefore(li, document.getElementById("list_notes").firstChild);
             document.getElementById("note_content").setAttribute("id_note", json.id_note);
@@ -33,6 +44,9 @@ function createNote() {
 
 function loadNote(_this) {
 	var id = _this.getAttribute('id_note');
+    var a = document.getElementsByClassName('disabled');
+    a[0].className = '';
+    _this.parentNode.className = 'disabled';
     //alert(id);
 	$.ajax({  
     type: 'POST',  
@@ -83,13 +97,26 @@ function syncNoteBeforeUnload() {
     }});
 }
 
-// function deleteNote(this) {
-// 	var id = document.getElementById(note_id);
-// 	$.ajax({  
-//     type: 'POST',  
-//     url: 'http://localhost/CloudNote/index.php/main/delete', 
-//     data: { id_note: id.innerHTML },
-//     success: function(response) {
-//         content.html(response);
-//     }});
-// }
+function deleteNote(_this) {
+    var id = _this.parentNode.getAttribute('id_note');
+    var parent_a =_this.parentNode;
+    var parent_li = parent_a.parentNode;
+    if(parent_li.className === 'disabled') {
+        var li_list = document.getElementsByTagName('li');
+        li_list[0].className = 'diabled';
+    }
+    parent_li.parentNode.removeChild(parent_li);
+    //alert(id);
+    $.ajax({  
+    type: 'POST',  
+    url: 'http://localhost/CloudNote/index.php/main/delete', 
+    data: { id_note: id },
+    success: function(response) {
+        //alert(response);
+        var json = jQuery.parseJSON(response);
+        if(!json.error) {
+        //     var a = document.getElementByName('delete');
+        // parent2.setAttribute('class', 'hide');
+        }
+    }});
+}
