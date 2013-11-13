@@ -28,6 +28,7 @@ class main extends CI_Controller {
 				$user->setId($user_data['id_user']);
 				$user->updateListOfNotes();
 				$tab = $user->getListOfNotes();
+
 				$data['listOfNotes'] = $tab;
 				$id_note = $tab[0]['id_note'];
 				$id_user = $user_data['id_user'];
@@ -74,7 +75,7 @@ class main extends CI_Controller {
 		        if ($query->num_rows() > 0)
 		        {
 		              foreach ($query->result() as $row) {
-		                echo "{\"id_note\": \"$row->id_note\", \"name_note\": \"$name\"}";
+		                echo "{\"id_note\": \"$row->id_note\", \"name_note\": \"$name\", \"content_note\": \"$row->content\"}";
 		              }
 		        }
 			}
@@ -118,7 +119,7 @@ class main extends CI_Controller {
 		if(isset($user_data['signed_in']) && $user_data['signed_in']) {
 
 			if(isset($user_data['id_user'])) {
-				$content_note = $_POST['content_note'];
+				$content_note = $content = str_replace("'", "\'", $_POST['content_note']);
 				$id_user = $user_data['id_user'];
 				$id_note = $_POST['id_note'];
 				$sql = "CALL update_note($id_note, '$content_note', $id_user)";
@@ -144,7 +145,6 @@ class main extends CI_Controller {
 				$id_user = $user_data['id_user'];
 				$id_note = $_POST['id_note'];
 				$sql = "CALL delete_note($id_note, $id_user)";
-				echo "$sql ";
 		        $query = $this->db->query($sql);
 		        echo 'SUCCESS';
 			}

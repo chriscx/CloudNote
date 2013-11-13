@@ -37,7 +37,7 @@ class signin extends CI_Controller {
         	$newdata = array(
                 'email'     => $email,
                 'signed_in' => TRUE,
-                'id_user'   => $this->id
+                'id_user'   => $user->getId()
             );
 
             $this->session->set_userdata($newdata);

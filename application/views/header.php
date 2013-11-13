@@ -18,13 +18,12 @@
                 <a class="brand" href="#">CloudNote</a>
                     <ul class="nav">
                         <?php 
-                            $isSignedIn = $this->session->userdata('logged_in');
+                            $isSignedIn = $this->session->userdata('signed_in');
                             if($isSignedIn){
                                 ?>
-                                <li class="active"><a href="#">Home</a></li>
+<!--                                 <li class="active"><a href="#">Home</a></li>
                                 <li><a href="#">Notes</a></li>
-                                <li><a href="#">Reminders</a></li>
-                                <li><a href="" class="">Sign Out</a></li>
+                                <li><a href="#">Reminders</a></li> -->
                             <?php
                             }
                         ?>

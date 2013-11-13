@@ -32,6 +32,7 @@ function createNote() {
             li.appendChild(a);
             document.getElementById("list_notes").insertBefore(li, document.getElementById("list_notes").firstChild);
             document.getElementById("note_content").setAttribute("id_note", json.id_note);
+            document.getElementById("note_content").value = json.content_note;
         }
         else if(json.error === 1) {
             alert("error 1");
@@ -105,11 +106,11 @@ function deleteNote(_this) {
     var parent_a =_this.parentNode;
     var parent_li = parent_a.parentNode;
 
-    parent_li.parentNode.removeChild(parent_li);
     if(parent_li.className === 'disabled') {
         var li_list = document.getElementsByTagName('li');
-        li_list[0].className = 'diabled';
+        li_list[1].setAttribute('class', 'disabled');
     }
+    parent_li.parentNode.removeChild(parent_li);
     //alert(id);
     $.ajax({  
     type: 'POST',  

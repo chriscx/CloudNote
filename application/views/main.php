@@ -40,7 +40,7 @@
                 </div>
                 <div class="span7">
                     <div style="height: 90%;">
-                        <textarea spellcheck="true" rows='25' style="width: 95%;" id="note_content" <?php echo "id_note='". $listOfNotes[0]['id_note']. "'"?>><?php echo $content_note_displayed; ?></textarea>
+                        <textarea spellcheck="true" style="width: 95%;" id="note_content" <?php echo "id_note='". $listOfNotes[0]['id_note']. "'"?>><?php echo $content_note_displayed; ?></textarea>
                     </div>
                 </div>
                 <div class="span2">
@@ -71,7 +71,8 @@
     //alert(height);
     // var style = 'height:' + height + 'px';
     // alert(style);
-    // document.getElementById('note_content').setAttribute('height', height + 'px');
+    //document.getElementById('note_content').height = height;
+    document.getElementById('note_content').rows = height / 20;
     // document.getElementById('note_content').setAttribute('width', '95%');
  </script>
 <?php include "footer.php"?>
