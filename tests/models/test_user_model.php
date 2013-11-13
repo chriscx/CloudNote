@@ -70,9 +70,7 @@ class test_users_model extends CodeIgniterUnitTestCase
 		$valid = $user->signIn('test', 'test@test.org');
 		$this->assertTrue($user->getListOfNotes() === null);
 
-		if($query->num_rows() > 0) {
-			$query = $this->db->query("DELETE FROM cn_users WHERE email = 'test@test.org'");
-		}
+		$query = $this->db->query("DELETE FROM cn_users WHERE email = 'test@test.org'");
 	}
 
 
@@ -83,12 +81,14 @@ class test_users_model extends CodeIgniterUnitTestCase
 		$query = $this->db->query("SELECT u.* FROM cn_users u WHERE u.email = 'test@test.org'");
 
 		$valid = $user->signIn('test', 'test@test.org');
+		$query = $this->db->query("INSERT INTO cn_notes(id_user, content, name) VALUES((SELECT u.id_user FROM cn_users u WHERE u.email = 'test@test.org'), 'test', 'test')");
 		$user->updateListOfNotes();
 		//create note
 		$this->assertFalse($user->getListOfNotes() === null);
-		if($query->num_rows() > 0) {
-			$query = $this->db->query("DELETE FROM cn_users WHERE email = 'test@test.org'");
-		}
+		
+		$query = $this->db->query("DELETE FROM cn_users WHERE email = 'test@test.org'");
+		$query = $this->db->query("DELETE FROM cn_notes WHERE name = 'test'");
+
 	}
 
 }
