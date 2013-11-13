@@ -3,30 +3,33 @@
  * Please note this file shouldn't be exposed on a live server,
  * there is no filtering of $_POST!!!!
  */
-error_reporting(-1);
-
-// Determines if running in cli mode
-if (isset($argv))
+error_reporting(0);
+if(isset($argv))
 {
-	$cli_mode = setup_cli($argv);
+	$cli_mode = setup_cli($argv); // Determines if running in cli mode
 }
-
+else
+{
+	$cli_mode = false;
+}
 /**
  * Configure your paths here:
  */
 define('MAIN_PATH', realpath(dirname(__FILE__)).'/');
-define('SIMPLETEST', MAIN_PATH.'tests/simpletest/'); // Directory of simpletest
+define('SIMPLETEST', MAIN_PATH .'tests/simpletest/'); // Directory of simpletest
 define('ROOT', MAIN_PATH); // Directory of codeigniter index.php
-define('TESTS_DIR', MAIN_PATH.'tests/'); // Directory of your tests.
-define('APP_DIR', MAIN_PATH.'application/'); // CodeIgniter Application directory
+define('TESTS_DIR', MAIN_PATH . 'tests/'); // Directory of your tests.
+define('APP_DIR', MAIN_PATH . 'application/'); // CodeIgniter Application directory
+
 
 //do not use autorun as it output ugly report upon no test run
-require_once SIMPLETEST.'unit_tester.php';
-require_once SIMPLETEST.'mock_objects.php';
-require_once SIMPLETEST.'collector.php';
-require_once SIMPLETEST.'web_tester.php';
-require_once SIMPLETEST.'extensions/my_reporter.php';
-require_once SIMPLETEST.'extensions/cli_reporter.php';
+require_once SIMPLETEST . 'unit_tester.php';
+require_once SIMPLETEST . 'mock_objects.php';
+require_once SIMPLETEST . 'collector.php';
+require_once SIMPLETEST . 'web_tester.php';
+require_once SIMPLETEST . 'extensions/my_reporter.php';
+require_once SIMPLETEST . 'xml.php';
+require_once SIMPLETEST . 'xmltime.php';
 
 $test_suite = new TestSuite();
 $test_suite->_label = 'CodeIgniter Test Suite';
@@ -70,15 +73,13 @@ if (isset($_GET['all']) || isset($_POST['all']))
 
 //Capture CodeIgniter output, discard and load system into $CI variable
 ob_start();
-	include(ROOT.'index.php');
+	include(ROOT . 'index.php');
 	$CI =& get_instance();
 ob_end_clean();
 
 $CI->load->library('session');
 $CI->session->sess_destroy();
-
 $CI->load->helper('directory');
-$CI->load->helper('form');
 
 // Get all main tests
 if ($run_all OR ( ! empty($_POST) && ! isset($_POST['test'])))
@@ -89,13 +90,13 @@ if ($run_all OR ( ! empty($_POST) && ! isset($_POST['test'])))
 	{
 		if (isset($_POST[$obj]) OR $run_all)
 		{
-			$dir = TESTS_DIR.$obj;
+			$dir = TESTS_DIR . $obj;
 			$dir_files = directory_map($dir);
 			foreach ($dir_files as $file)
 			{
 				if ($file != 'index.html')
 				{
-					$test_suite->addFile($dir.'/'.$file);
+					$test_suite->addFile($dir . '/' . $file);
 				}
 			}
 		}
@@ -105,9 +106,9 @@ elseif (isset($_POST['test'])) //single test
 {
 	$file = $_POST['test'];
 
-	if (file_exists(TESTS_DIR.$file))
+	if (file_exists(TESTS_DIR . $file))
 	{
-		$test_suite->addFile(TESTS_DIR.$file);
+		$test_suite->addFile(TESTS_DIR . $file);
 	}
 }
 
@@ -124,9 +125,9 @@ function setup_cli($argv)
 {
 	if (php_sapi_name() == 'cli')
 	{
-		if (isset($argv[1]))
+		if(isset($argv[1]))
 		{
-			if (stripos($argv[1],'.php') !== false)
+			if(stripos($argv[1],'.php') !== false)
 			{
 				$_POST['test'] = $argv[1];
 			}
@@ -174,20 +175,19 @@ function map_tests($location = '')
 }
 
 //variables for report
-$controllers = map_tests(TESTS_DIR.'controllers');
-$models = map_tests(TESTS_DIR.'models');
-$views = map_tests(TESTS_DIR.'views');
-$libraries = map_tests(TESTS_DIR.'libraries');
-$bugs = map_tests(TESTS_DIR.'bugs');
-$helpers = map_tests(TESTS_DIR.'helpers');
-$form_url =  'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+$controllers = map_tests(TESTS_DIR . 'controllers');
+$models = map_tests(TESTS_DIR . 'models');
+$views = map_tests(TESTS_DIR . 'views');
+$libraries = map_tests(TESTS_DIR . 'libraries');
+$bugs = map_tests(TESTS_DIR . 'bugs');
+$helpers = map_tests(TESTS_DIR . 'helpers');
+$form_url =  'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-//display the form
-if (isset($cli_mode))
+if ($cli_mode)
 {
-	exit ($test_suite->run(new CliReporter()) ? 0 : 1);
+	exit ($test_suite->run(new XMLtimeReporter()) ? 0 : 1);
 }
 else
 {
-	include(TESTS_DIR.'test_gui.php');
+	include(TESTS_DIR . 'test_gui.php');
 }

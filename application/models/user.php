@@ -51,13 +51,6 @@ class user extends CI_Model {
                 }
             }
 
-            $newdata = array(
-                'email'     => $email,
-                'signed_in' => TRUE,
-                'id_user'   => $this->id
-            );
-
-            $this->session->set_userdata($newdata);
         }
         return $valid;    
     }
@@ -65,17 +58,17 @@ class user extends CI_Model {
     /*
         returns TRUE or FALSE
     */
-    public function isSignedIn(){
-        return $this->session->userdata('signed_in');
-    }
+    // public function isSignedIn(){
+    //     return $this->session->userdata('signed_in');
+    // }
     
-    public function signOut(){
-        $this->session->set_userdata('signed_in', FALSE);
-    }
+    // public function signOut(){
+    //     $this->session->set_userdata('signed_in', FALSE);
+    // }
     
     public function updateListOfNotes(){
         
-        if($this->isSignedIn()){
+        // if($this->isSignedIn()){
                //get list of Id, name of notes
             $sql = "CALL get_list_notes($this->id)";
             $query = $this->db->query($sql);
@@ -89,7 +82,7 @@ class user extends CI_Model {
                 }
             }
             $query->next_result();
-        }
+        // }
     }
 
     public function getListOfNotes(){

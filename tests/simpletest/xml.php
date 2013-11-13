@@ -186,15 +186,15 @@ class XmlReporter extends SimpleReporter {
      *    @access public
      */
     function paintException($exception) {
-        parent::paintException($exception);
-        print $this->getIndent(1);
-        print "<" . $this->namespace . "exception>";
-        $message = 'Unexpected exception of type [' . get_class($exception) .
-                '] with message ['. $exception->getMessage() .
-                '] in ['. $exception->getFile() .
-                ' line ' . $exception->getLine() . ']';
-        print $this->toParsedXml($message);
-        print "</" . $this->namespace . "exception>\n";
+        // parent::paintException($exception);
+        // print $this->getIndent(1);
+        // print "<" . $this->namespace . "exception>";
+        // $message = 'Unexpected exception of type [' . get_class($exception) .
+        //         '] with message ['. $exception->getMessage() .
+        //         '] in ['. $exception->getFile() .
+        //         ' line ' . $exception->getLine() . ']';
+        // print $this->toParsedXml($message);
+        // print "</" . $this->namespace . "exception>\n";
     }
 
     /**

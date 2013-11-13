@@ -34,7 +34,13 @@ class signin extends CI_Controller {
         $user = new $this->user;
         $data['verif_sign_in'] = $user->signIn($_POST['password'], $_POST['email']);
         if($data['verif_sign_in']) {
+        	$newdata = array(
+                'email'     => $email,
+                'signed_in' => TRUE,
+                'id_user'   => $this->id
+            );
 
+            $this->session->set_userdata($newdata);
 			// redirect to main address
 			header("Location: " . site_url("index.php/main/index/"));
        	}

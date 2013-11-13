@@ -21,8 +21,7 @@ class signout extends CI_Controller {
 	{
         $user_data = $this->session->all_userdata();
         if(isset($user_data['id_user'])) {
-        	$user = new $this->user;
-        	$user->signOut();
+        	$this->session->set_userdata('signed_in', FALSE);
 	    }
 	    else {
 	    	$this->session->sess_destroy();
