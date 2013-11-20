@@ -141,13 +141,13 @@ function detectkeyword() {
 
     for(i = 0; i < sentences.length - 1; i++) {
 
-        regex = /(^|.)((M|m)eeting|(M|m)eet|(A|a)ppointment|(L|l)unch|(D|d)iner|)/;
+        regex = /(^|.)((M|m)eeting|(M|m)eet|(A|a)ppointment|(L|l)unch|(D|d)iner)(.|$)/;
         result1 = regex.exec(sentences[i]);
         if(result1 === null) {
             result1 = new Array();
             result1[0] = "null";
         }
-
+        //alert(result1[0]);
         // TODO optimize the regex with ? for the years
         regex = /(^|.)((\d|[0]\d|[1][0-2])\/(\d|[0-2]\d|[3][0-1])(\/20\d\d|\/[0-9][0-9]))|((\d|[0]\d|[1][0-2])\/(\d|[0-2]\d|[3][0-1]))(.|$)/;
         result2 = regex.exec(sentences[i]);
@@ -156,7 +156,7 @@ function detectkeyword() {
             result2[0] = "null";
         }
         //alert(result2);
-        regex = /(^|.)(\d|[0]\d|[1][0-2]):([0-5]\d)\s?(?:AM|PM|am|pm)./;
+        regex = /(^|.)(\d|[0]\d|[1][0-2]):([0-5]\d)\s?(?:AM|PM|am|pm)(.|$)/;
         result3 = regex.exec(sentences[i]);
         if(result3 === null) {
             var result3 = new Array();
@@ -164,6 +164,7 @@ function detectkeyword() {
         }
 
         var ident = result1[0]+result2[0]+result3[0];
+        setTimeout('', 1000);
         $.ajax({  
         type: 'POST',  
         url: 'http://localhost/CloudNote/index.php/main/addReminder', 
@@ -173,8 +174,81 @@ function detectkeyword() {
                 time: result3[0],
                 identifier : ident },
         success: function(response) {
+        var json = jQuery.parseJSON(response);
+        if(!json.error) {
+            if(json.alreadyExists !== '1') {
+                var li = document.createElement('li');
+                li.setAttribute("id_reminder", json.id_reminder);
+                li.setAttribute('id_note', json.id_note);
+
+                var a = document.createElement('a');
+
+                var span1 = document.createElement('span');
+                span1.innerHTML = 'name: ';
+                var span2 = document.createElement('span');
+                span2.innerHTML = json.name_r;
+                span2.setAttribute('name', 'name');
+
+                var span3 = document.createElement('span');
+                span3.innerHTML = 'date: ';
+                var span4 = document.createElement('span');
+                span4.innerHTML = json.date_r;
+                span4.setAttribute('name', 'date');
+
+                var span5 = document.createElement('span');
+                span5.innerHTML = 'time: ';
+                var span6 = document.createElement('span');
+                span6.innerHTML = json.time_r;
+                span6.setAttribute('name', 'time');
+
+                var span7 = document.createElement('span');
+                span7.innerHTML = 'location: ';
+                var span8 = document.createElement('span');
+                span8.innerHTML = json.location_r;
+                span8.setAttribute('name', 'location');
+
+                var span9 = document.createElement('span');
+                span9.setAttribute('name', 'description');
+
+                var button1 = document.createElement('button');
+                button1.innerHTML = 'Open';
+                button1.setAttribute('onclick', 'openModalReminder(this)');
+                button1.setAttribute('class', 'btn');
+
+                var button2 = document.createElement('button');
+                button2.innerHTML = 'Remove';
+                button2.setAttribute('onclick', 'deleteReminder(this)');
+                button2.setAttribute('class', 'btn');
+
+                // var button3 = document.createElement('button');
+                // button3.innerHTML = 'Get Ical';
+                // button3.setAttribute('class', 'btn');
+
+                var br1 = document.createElement('br');
+                var br2 = document.createElement('br');
+                var br3 = document.createElement('br');
+
+                a.appendChild(span1);
+                a.appendChild(span2);
+                a.appendChild(br1);
+                a.appendChild(span3);
+                a.appendChild(span4);
+                a.appendChild(br2);
+                a.appendChild(span5);
+                a.appendChild(span6);
+                a.appendChild(br3);
+                a.appendChild(span7);
+                a.appendChild(span8);
+                a.appendChild(span9);
+                li.appendChild(a);
+                li.appendChild(button1);
+                li.appendChild(button2);
+                // li.appendChild(button3);
+
+                document.getElementById("list_reminders").appendChild(li);
+            }
+        }
         }});
-        
     }
 }
 

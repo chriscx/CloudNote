@@ -74,3 +74,7 @@ function openModalReminder(_this) {
     }
     $('#reminder').modal('show');
 }
+
+function getIcalFile(_this) {
+
+}

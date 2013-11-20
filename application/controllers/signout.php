@@ -26,5 +26,6 @@ class signout extends CI_Controller {
 	    else {
 	    	$this->session->sess_destroy();
 	    }
+	    header("Location: " . site_url("index.php/signin/index/"));
 	}
 }

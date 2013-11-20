@@ -76,7 +76,7 @@
                                 </div>
                                 <?php
                                     for($i = 0; $i < count($listOfReminders); $i++) {
-                                        echo "<li id='".$listOfReminders[$i]['id_reminder']."' id_note='".$listOfReminders[$i]['id_note']."'><a><span>name: </span><span name='name'>".$listOfReminders[$i]['name']."</span><br /><span>date: </span><span name='date'>".$listOfReminders[$i]['date']."</span><br /><span>time: </span><span name='time'>".$listOfReminders[$i]['time']."</span><br /><span>location: </span><span name ='location'>".$listOfReminders[$i]['location']."</span><span name='description' class='hide'></span></a><button class='btn' onclick='openModalReminder(this)'>Open</button><button class='btn' onclick='deleteReminder(this)'>Remove</button><button class='btn'>Get Ical</button></li><li><br /></li>";
+                                        echo "<li id='".$listOfReminders[$i]['id_reminder']."' id_note='".$listOfReminders[$i]['id_note']."'><a><span>name: </span><span name='name'>".$listOfReminders[$i]['name']."</span><br /><span>date: </span><span name='date'>".$listOfReminders[$i]['date']."</span><br /><span>time: </span><span name='time'>".$listOfReminders[$i]['time']."</span><br /><span>location: </span><span name ='location'>".$listOfReminders[$i]['location']."</span><span name='description' class='hide'></span></a><button class='btn' onclick='openModalReminder(this)'>Open</button><button class='btn' onclick='deleteReminder(this)'>Remove</button></li><li><br /></li>";
                                     }
                                 ?>
                             </ul>
