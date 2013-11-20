@@ -33,10 +33,11 @@ class signup extends CI_Controller {
     {
         $user = new $this->user->user();
         $data['user_is_created'] = $user->create($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
+        
         if($data['user_is_created'])
         	//redirect to sign in page
         	header("Location: " . site_url("index.php/signin/index/"));
         else
-        	$this->load->view('success_sign_up', $data);
+        	header("Location: " . site_url("index.php/signin/index/"));
     }
 }
