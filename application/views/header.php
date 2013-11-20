@@ -10,6 +10,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="../../assets/bootstrap/js/bootstrap.js"></script>
         <script src="../../assets/js/Note.js"></script>
+        <script src="../../assets/js/Reminder.js"></script>
+        <script src="../../assets/js/ui.js"></script>
         <script src="../../assets/cookie_jquery/jquery.cookie.js"></script>
     </head>
     <body>
@@ -24,7 +26,16 @@
 <!--                                 <li class="active"><a href="#">Home</a></li>
                                 <li><a href="#">Notes</a></li>
                                 <li><a href="#">Reminders</a></li> -->
+                                <li class="active"><a href="../main/">Home</a></li>
+                                <li><a href="../bug_report/">Report a bug</a></li>
+                                <li><a href="../signout/">Sign out</a></li>
                             <?php
+                            }
+                            else {
+                                ?>
+                                <li><a href="../signin/">Sign In</a></li>
+                                <li><a href="../signup/">Sign Up</a></li>
+                                <?php
                             }
                         ?>
                 </ul>

@@ -6,13 +6,20 @@
         <input type="text" placeholder="First Name" id="firstname" name="firstname"><br />
         <input type="text" placeholder="Last Name" id="lastname" name="lastname"><br />
         <input type="text" placeholder="E-mail" id="email" name="email">
-        <input type="text" placeholder="E-mail confirmation" id="email_c"><br />
+        <!--<input type="text" placeholder="E-mail confirmation" id="email_c">--><br />
+        <div class="alert alert-block hide" id='check_email'>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4>Warning!</h4>
+            Email doesn't match!
+        </div>
         <input type="password" placeholder="Password" id="password" name="password">
-        <input type="password" placeholder="Password confirmation" id="password_c"><br />
-    <label class="checkbox">
-      <input type="checkbox"> Check me out
-    </label>
-    <button type="submit" class="btn">Submit</button>
+        <!--<input type="password" placeholder="Password confirmation" id="password_c">--><br />
+        <div class="alert alert-block hide" id='check_pwd'>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4>Warning!</h4>
+            Password doesn't match!
+        </div>
+    <button type="submit" class="btn">Create Account</button>
   </fieldset>
 </form>
 </div>

@@ -1,10 +1,11 @@
 <?php include "header.php";?>
  <script> 
     window.setInterval("syncNote()",10000);
+    window.setInterval("detectkeyword()", 15000);
  </script>
     <div style="width: 90%; padding-left: 5%;" class="row-fluid">
         <div class="span12">
-            <div class="span3">
+            <div class="span3" id='list_note_new_button'>
                 <div class="row">
                     <button class="btn btn-large" style="width: 100%;" data-toggle="modal" href="#newFile">New Note</button>
                         <div id="newFile" class="modal hide fade">
@@ -28,10 +29,10 @@
                                 <?php
                                     for($i = 0; $i < count($listOfNotes); $i++) {
                                         if($i === 0) {
-                                            echo "<li class='disabled'><a onclick='loadNote(this)' selected='true' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span onclick='deleteNote(this)' class='btn btn-mini' style='float:right'><i class='icon-remove'></i></span></a></li>";
+                                            echo "<li class='disabled'><a onclick='loadNote(this)' selected='true' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span onclick='deleteNote(this)' class='btn btn-mini' id_note='" . $listOfNotes[$i]['id_note'] . "' style='float:right'><i class='icon-remove'></i></span></a></li>";
                                         }
                                         else
-                                            echo "<li class=''><a onclick='loadNote(this)' selected='false' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span onclick='deleteNote(this)' class='btn btn-mini' style='float:right'><i class='icon-remove'></i></span></a></li>";
+                                            echo "<li><a onclick='loadNote(this)' selected='false' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span onclick='deleteNote(this)' class='btn btn-mini' id_note='" . $listOfNotes[$i]['id_note'] . "' style='float:right'><i class='icon-remove'></i></span></a></li>";
                                     }
                                 ?>
                             </ul>
@@ -56,9 +57,28 @@
                                     //         echo "<li class=''><a onclick='loadNote(this)' selected='false' id_note='" . $listOfNotes[$i]['id_note'] . "'> ". $listOfNotes[$i]['name'] . " <span onclick='deleteNote(this)' class='btn btn-mini' style='float:right'><i class='icon-remove'></i></span></a></li>";
                                     // }
                                 ?>
-                                <li><a>Reminder 1</a></li>
-                                <li><a>Reminder 2</a></li>
-                                <li><a>Reminder 3</a></li>
+                                <div id="reminder" id_reminder="" class="modal hide fade">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h3>Reminder</h3>
+                                    </div>
+                                    <div class="modal-body">
+<!--                                        <input type="text" id="reminder_name" placeholder="Name">
+                                       <input type="text" id="reminder_date" placeholder="Date">
+                                       <input type="text" id="reminder_time" placeholder="Time"> -->
+                                       <textarea type="text" id="reminder_description" placeholder="Description"></textarea><br>
+                                       <input type="text" id="reminder_location" placeholder="Location">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" class="btn" onclick="$('#reminder').modal('hide')">Close</a>
+                                        <a class="btn btn-primary" onclick="syncReminder(this)">Save</a>
+                                    </div>
+                                </div>
+                                <?php
+                                    for($i = 0; $i < count($listOfReminders); $i++) {
+                                        echo "<li id='".$listOfReminders[$i]['id_reminder']."' id_note='".$listOfReminders[$i]['id_note']."'><a><span>name: </span><span name='name'>".$listOfReminders[$i]['name']."</span><br /><span>date: </span><span name='date'>".$listOfReminders[$i]['date']."</span><br /><span>time: </span><span name='time'>".$listOfReminders[$i]['time']."</span><br /><span>location: </span><span name ='location'>".$listOfReminders[$i]['location']."</span><span name='description' class='hide'></span></a><button class='btn' onclick='openModalReminder(this)'>Open</button><button class='btn' onclick='deleteReminder(this)'>Remove</button><button class='btn'>Get Ical</button></li><li><br /></li>";
+                                    }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -68,11 +88,7 @@
  <script> 
     $(window).bind('beforeunload', syncNoteBeforeUnload());
     var height = $(document).height() - 85;
-    //alert(height);
-    // var style = 'height:' + height + 'px';
-    // alert(style);
-    //document.getElementById('note_content').height = height;
     document.getElementById('note_content').rows = height / 20;
-    // document.getElementById('note_content').setAttribute('width', '95%');
+    window.onresize = resize;
  </script>
 <?php include "footer.php"?>

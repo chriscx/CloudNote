@@ -12,7 +12,7 @@ class user extends CI_Model {
     private $email;
 
     private $listOfNotes;
-    
+    private $listOfReminders;
     public function __construct() {
         parent::__construct();
     }
@@ -95,5 +95,28 @@ class user extends CI_Model {
         }
         else
             return -1;
+    }
+
+    public function updateListOfReminders() {
+        $sql = "CALL get_list_reminders($this->id)";
+                $query = $this->db->query($sql);
+                $i = 0;
+                if ($query->num_rows() > 0)
+                {
+                      foreach ($query->result() as $row) {
+                        $this->listOfReminders[$i]['id_reminder'] = $row->id_reminder;
+                        $this->listOfReminders[$i]['id_note'] = $row->id_note;
+                        $this->listOfReminders[$i]['name'] = $row->name;
+                        $this->listOfReminders[$i]['date'] = $row->date;
+                        $this->listOfReminders[$i]['time'] = $row->time;
+                        $this->listOfReminders[$i]['location'] = $row->location;
+                        $i++;
+                      }
+                }
+                $query->next_result();
+    }
+
+    public function getListOfReminders() {
+        return $this->listOfReminders;
     }
 }

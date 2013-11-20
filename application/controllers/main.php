@@ -26,10 +26,11 @@ class main extends CI_Controller {
 			if(isset($user_data['id_user'])) {
 				$user = new $this->user;
 				$user->setId($user_data['id_user']);
+
 				$user->updateListOfNotes();
 				$tab = $user->getListOfNotes();
-
 				$data['listOfNotes'] = $tab;
+
 				$id_note = $tab[0]['id_note'];
 				$id_user = $user_data['id_user'];
 				$sql = "CALL get_note($id_note, $id_user)";
@@ -41,6 +42,11 @@ class main extends CI_Controller {
 		              }
 		        }
 		        $query->next_result();
+
+		        $user->updateListOfReminders();
+				$tab = $user->getListOfReminders();
+				$data['listOfReminders'] = $tab;
+
 				$this->load->view('main', $data);
 
 				//get content of note and display it
@@ -105,12 +111,11 @@ class main extends CI_Controller {
 		        }
 			}
 			else {
-				$data['error_nb'] = 1;
-				$this->load->view('error', $data);
+				echo "{\"error\": \"2\"}";
 			}
 		}
 		else
-			$this->load->view('not_signed_in', $data);
+			echo "{\"error\": \"1\"}";
     }
 
     public function sync() {
@@ -128,12 +133,11 @@ class main extends CI_Controller {
 		        echo 'SUCCESS';
 			}
 			else {
-				$data['error_nb'] = 1;
-				$this->load->view('error', $data);
+				echo "{\"error\": \"2\"}";
 			}
 		}
 		else
-			$this->load->view('not_signed_in', $data);
+			echo "{\"error\": \"1\"}";
     }
 
     public function delete() {
@@ -146,14 +150,85 @@ class main extends CI_Controller {
 				$id_note = $_POST['id_note'];
 				$sql = "CALL delete_note($id_note, $id_user)";
 		        $query = $this->db->query($sql);
-		        echo 'SUCCESS';
+		        echo "{\"success\": \"success\"}";
 			}
 			else {
-				$data['error_nb'] = 1;
-				$this->load->view('error', $data);
+				echo "{\"error\": \"2\"}";
 			}
 		}
 		else
-			$this->load->view('not_signed_in', $data);
+			echo "{\"error\": \"1\"}";
+    }
+
+    public function addReminder() {
+    	$user_data = $this->session->all_userdata();
+
+		if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+
+			if(isset($user_data['id_user'])) {
+
+				$id_user = $user_data['id_user'];
+				$id_note = $_POST['id_note'];
+				$name = $_POST['name'];
+				$date = $_POST['date'];
+				if(strlen($date) === 5)
+					$date += '/' + date("Y");
+				$time = $_POST['time'];
+				$identifier = $_POST['identifier'];
+				$location = 'null';
+
+				$sql = "SELECT create_reminder('$name', '$date', '$time', '$location', $id_note, $id_user, '$identifier', NULL)";
+				//echo $sql;
+		        $query = $this->db->query($sql);
+		        echo "{\"success\": \"success\"}";
+			}
+			else {
+				echo "{\"error\": \"2\"}";
+			}
+		}
+		else
+			echo "{\"error\": \"1\"}";
+    }
+
+    public function syncReminder() {
+    	$user_data = $this->session->all_userdata();
+
+		if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+
+			if(isset($user_data['id_user'])) {
+				$id_user = $user_data['id_user'];
+				$id_reminder = $_POST['id_reminder'];
+				$description = str_replace("'", "\'", $_POST['description_r']);
+				$location = str_replace("'", "\'", $_POST['location_r']);
+				$sql = "CALL update_reminder($id_reminder, $id_user, '$location', '$description')";
+		        $query = $this->db->query($sql);
+		        echo "{\"success\": \"success\"}";
+			}
+			else {
+				echo "{\"error\": \"2\"}";
+			}
+		}
+		else
+			echo "{\"error\": \"1\"}";
+    }
+
+    public function deleteReminder() {
+		$user_data = $this->session->all_userdata();
+
+		if(isset($user_data['signed_in']) && $user_data['signed_in']) {
+
+			if(isset($user_data['id_user'])) {
+				$id_user = $user_data['id_user'];
+				$id_reminder = $_POST['id_reminder'];
+				$sql = "CALL delete_reminder($id_reminder, $id_user)";
+		        $query = $this->db->query($sql);
+		        echo "{\"success\": \"success\"}";
+			}
+			else {
+				echo "{\"error\": \"2\"}";
+			}
+		}
+		else
+			echo "{\"error\": \"1\"}";
     }
 }
